@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 export default class MainSidebar extends Component {
   folderButtons = this.props.folders.map(folder => (
-    <button key={folder.id}>
+    <button>
       <Link to={folder.id}>{folder.name}</Link>
     </button>
   ));

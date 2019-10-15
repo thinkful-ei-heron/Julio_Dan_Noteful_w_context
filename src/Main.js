@@ -7,7 +7,7 @@ export default class Main extends Component {
     return (
       <ul className="noteContainer">
         {this.props.notes.map(note => (
-          <Note key={note.id} name={note.name} date={note.modified} content={note.content} />
+          <Note key={note.id} id={note.id} name={note.name} date={note.modified} />
         ))}
       </ul>
     );
