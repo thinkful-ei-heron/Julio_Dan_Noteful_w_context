@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
+import './App.css';
 import MainSidebar from './MainSidebar';
 import NoteSidebar from './NoteSidebar';
 import Main from './Main';
