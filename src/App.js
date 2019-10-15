@@ -16,7 +16,7 @@ export default class App extends Component {
         })
       );
     });
-
+    console.log(notes);
     return <Main notes={notes} />;
   }
 
@@ -30,7 +30,10 @@ export default class App extends Component {
           <Route path="/" render={() => <MainSidebar folders={store.folders} />} />
           <Route path="/note" component={NoteSidebar} />
         </sidebar>
-        <main className="App"></main>
+        <main className="App">
+          <Route path="/" render={this.mainWithProps} />
+          <Route path="/:fileId" render={this.mainWithProps} />
+        </main>
       </>
     );
   }
