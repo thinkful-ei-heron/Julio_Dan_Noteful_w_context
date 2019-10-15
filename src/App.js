@@ -6,17 +6,18 @@ import Main from './Main';
 import store from './store';
 
 export default class App extends Component {
-  mainWithProps() {
+  mainWithProps(props) {
+    console.log(props);
     let notes = [];
-    console.log(store);
-    store.folders.forEach(folder => {
-      notes.push(
-        store.notes.filter(note => {
-          if (note.folderId === folder.id) return note;
-        })
-      );
-    });
-    console.log(notes);
+    let filter = props.match.url.replace('/', '');
+    if (filter) {
+      let filterFolder = store.folders.find(folder => folder.id === filter);
+      notes.push(store.notes.filter(note => note.folderId === filterFolder.id));
+    } else {
+      store.folders.forEach(folder => {
+        notes.push(store.notes.filter(note => note.folderId === folder.id));
+      });
+    }
     return <Main notes={notes} />;
   }
 
@@ -26,13 +27,13 @@ export default class App extends Component {
         <header className="Header">
           <h1>Noteful</h1>
         </header>
-        <sidebar>
-          <Route path="/" render={() => <MainSidebar folders={store.folders} />} />
+        <nav>
+          <Route path="/" component={() => <MainSidebar folders={store.folders} />} />
           <Route path="/note" component={NoteSidebar} />
-        </sidebar>
+        </nav>
         <main className="App">
-          <Route path="/" render={this.mainWithProps} />
-          <Route path="/:fileId" render={this.mainWithProps} />
+          <Route exact path="/" component={this.mainWithProps} />
+          <Route path="/:fileId" render={props => this.mainWithProps(props)} />
         </main>
       </>
     );

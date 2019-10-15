@@ -3,7 +3,7 @@ import Note from './Note';
 
 export default class Main extends Component {
   render() {
-    console.log(this.props);
+    console.log(this.props.id);
     return (
       <ul className="noteContainer">
         {this.props.notes.map(folder => {
