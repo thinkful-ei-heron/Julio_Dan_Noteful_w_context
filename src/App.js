@@ -7,21 +7,6 @@ import Main from './Main';
 import store from './store';
 
 export default class App extends Component {
-  mainWithProps(props) {
-    console.log(props);
-    let notes = [];
-    let filter = props.match.url.replace('/', '');
-    if (filter) {
-      let filterFolder = store.folders.find(folder => folder.id === filter);
-      notes.push(store.notes.filter(note => note.folderId === filterFolder.id));
-    } else {
-      store.folders.forEach(folder => {
-        notes.push(store.notes.filter(note => note.folderId === folder.id));
-      });
-    }
-    return <Main notes={notes} />;
-  }
-
   render() {
     return (
       <>
@@ -33,8 +18,13 @@ export default class App extends Component {
           <Route path="/note" component={NoteSidebar} />
         </nav>
         <main className="App">
-          <Route exact path="/" component={this.mainWithProps} />
-          <Route path="/:fileId" render={props => this.mainWithProps(props)} />
+          <Route exact path="/" component={() => <Main notes={store.notes} />} />
+          <Route
+            path="/:folderId"
+            render={props => (
+              <Main notes={store.notes.filter(note => note.folderId === props.match.params.folderId)} />
+            )}
+          />
         </main>
       </>
     );
