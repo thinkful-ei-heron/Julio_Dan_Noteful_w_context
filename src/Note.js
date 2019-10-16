@@ -1,14 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import './Note.css';
 
 export default function Note(props) {
   console.log(props);
   return (
-    <Link to={'/note/' + props.id}>
+    <>
       <li className="note">
-        <h1>{props.name}</h1>
-        <span>{props.date}</span>
-        <button>Delete Note</button>
+        <Link to={'/note/' + props.id}>
+          <div className="noteCard">
+            <h2>{props.name}</h2>
+            <div className="noteInfo">
+              <span>{props.date}</span>
+              <button>Delete Note</button>
+            </div>
+          </div>
+        </Link>
       </li>
       {props.description ? (
         <li>
@@ -17,6 +24,6 @@ export default function Note(props) {
       ) : (
         ''
       )}
-    </Link>
+    </>
   );
 }

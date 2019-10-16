@@ -1,18 +1,25 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import './MainSidebar.css';
 
 export default class MainSidebar extends Component {
-  folderButtons = this.props.folders.map(folder => (
-    <button>
-      <Link to={folder.id}>{folder.name}</Link>
-    </button>
-  ));
+  folderButtons = (
+    <ul className="sideNav">
+      {this.props.folders.map(folder => (
+        <li>
+          <Link to={folder.id}>
+            <button className="folderButton">{folder.name}</button>
+          </Link>
+        </li>
+      ))}
+    </ul>
+  );
 
   render() {
     return (
-      <nav>
+      <nav className="sideBar">
         {this.folderButtons}
-        <button>Add Folder</button>
+        <button className="addBtn">Add Folder</button>
       </nav>
     );
   }

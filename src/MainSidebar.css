@@ -1,0 +1,34 @@
+ul {
+  width: 100%;
+  padding: 0;
+  list-style: none;
+}
+
+button {
+  background: none;
+  height: 75px;
+}
+
+.folderButton {
+  width: 100%;
+  border: none;
+}
+
+.sideNav li {
+  border-bottom: 2px solid black;
+}
+
+.sideNav li:first-child {
+  border-top: 2px solid black;
+}
+
+.sideNav li:last-child {
+  border-bottom: 2px solid black;
+}
+
+.addBtn {
+  margin-top: 10px;
+  width: 80%;
+  text-align: center;
+  border: 2px solid black;
+}

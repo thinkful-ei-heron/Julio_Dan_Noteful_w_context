@@ -1,5 +1,6 @@
 import React from 'react';
 import Note from './Note';
+import './NoteView.css';
 
 export default function NoteView(props) {
   console.log(props);
@@ -14,10 +15,8 @@ export default function NoteView(props) {
           description={props.note.content}
         />
       </ul>
-      <div>
-        <span className="folderName">
-          {props.folders.find(folder => folder.id === props.note.folderId).name}
-        </span>
+      <div className="folderName">
+        <h2>{props.folders.find(folder => folder.id === props.note.folderId).name}</h2>
       </div>
     </>
   );
