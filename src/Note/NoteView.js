@@ -1,23 +1,23 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Note from './Note';
 import './NoteView.css';
+import NoteContext from '../NoteContext';
 
-export default function NoteView(props) {
-  console.log(props);
-  return (
-    <>
-      <ul className="noteContainer">
-        <Note
-          key={props.note.id}
-          id={props.note.id}
-          name={props.note.name}
-          date={props.note.modified}
-          description={props.note.content}
-        />
-      </ul>
-      <div className="folderName">
-        <h2>{props.folders.find(folder => folder.id === props.note.folderId).name}</h2>
-      </div>
-    </>
-  );
+export default class NoteView extends Component {
+  static contextType = NoteContext;
+  render() {
+    const { folders, notes } = this.context;
+    let note = notes.find(note => note.id === this.props.noteId);
+    console.log(note);
+    return (
+      <>
+        <ul className="noteContainer">
+          <Note key={note.id} id={note.id} name={note.name} date={note.modified} description={note.content} />
+        </ul>
+        <div className="folderName">
+          <h2>{folders.find(folder => folder.id === note.folderId).name}</h2>
+        </div>
+      </>
+    );
+  }
 }
