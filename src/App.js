@@ -3,10 +3,10 @@ import { Route, Switch } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import './reset.css';
 import './App.css';
-import MainSidebar from './MainSidebar';
-import NoteSidebar from './NoteSidebar';
-import NoteView from './NoteView';
-import NoteList from './NoteList';
+import MainSidebar from './Nav/MainSidebar';
+import NoteSidebar from './Nav/NoteSidebar';
+import NoteView from './Note/NoteView';
+import NoteList from './Main/NoteList';
 import store from './store';
 
 export default class App extends Component {

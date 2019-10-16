@@ -6,7 +6,6 @@ export default function NoteSidebar(props) {
       <button class="goBackBtn" onClick={props.goBackEvent}>
         Go Back
       </button>
-      ;
     </nav>
   );
 }
