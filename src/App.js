@@ -25,7 +25,8 @@ export default class App extends Component {
       .then(data => this.setState({ notes: data }));
   }
 
-  deleteNote = noteId => {
+  deleteNote = (noteId, e) => {
+    e.preventDefault();
     fetch(`http://localhost:9090/notes/${noteId}`, {
       method: 'DELETE',
       headers: { 'content-type': 'application/json' }
